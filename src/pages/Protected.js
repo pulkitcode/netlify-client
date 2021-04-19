@@ -5,17 +5,21 @@ import { Link, useHistory } from "react-router-dom";
 export default function Protected() {
 
     const { userData } = useContext(UserContext);
-    const history = useHistory();
+    let history = useHistory();
 
     useEffect(() => {
 
         console.log("PROTECTEDDDDDDDDDD   =====    >>>>>   ", userData.user)
 
-        if (!userData.user) {
-            history.push('/login')
+        let returnToLogin = () => {
+            if (!userData.user) {
+                history.push('/login')
+            }
         }
 
-    }, [userData])
+        returnToLogin()
+
+    }, [userData, history])
 
 
     return (
