@@ -12,11 +12,14 @@ export default function Register() {
     // const [password, setPassword] = useState();
     // const [passwordCheck, setPasswordCheck] = useState();
     const [error, setError] = useState("");
+    const [signUpBtnClicked, SetsignUpBtnClicked] = useState(false);
 
     const { register, handleSubmit } = useForm();
     const onSubmit = async data => {
 
         try {
+
+            SetsignUpBtnClicked(true)
 
             await axios.post(`${BASE_URL}/register`,
                 {
@@ -63,6 +66,7 @@ export default function Register() {
         } catch (err) {
             err.response.data.msg && setError(err.response.data.msg);
             console.log("EROOR FROM SERVER ===>>    ", err.response.data.msg)
+            SetsignUpBtnClicked(false)
         }
     };
 
@@ -128,7 +132,19 @@ export default function Register() {
                                 {/* End Password  */}
 
                                 {/* Submit Button */}
-                                <button type="submit" className="btn btn-block btn-wide btn-primary text-uppercase">Sign Up</button>
+                                <button type="submit" className="btn btn-block btn-wide btn-primary text-uppercase"
+                                    disabled={signUpBtnClicked}
+                                >
+                                    {signUpBtnClicked ?
+                                        <>
+                                            Signing Up Please Wait ...   <span className="spinner-border spinner-border-sm" role="status" aria-hidden="false"></span>
+                                        </>
+                                        :
+                                        <>
+                                            Sign Up
+                                        </>}
+
+                                </button>
                                 {/* End Submit Button  */}
 
                                 {error &&
