@@ -17,9 +17,9 @@ export default function Header() {
 
                     <Link className="navbar-brand" to="/"><i className="fa fa-home"></i> Home</Link>
 
-                    <div class="collapse navbar-collapse" id="navbarCollapse-2">
+                    <div className="collapse navbar-collapse" id="navbarCollapse-2">
                         <ul className="navbar-nav ml-auto mr-sm-2 mt-2 mt-lg-0">
-                            <li class="nav-item active mr-3">
+                            <li className="nav-item active mr-3">
                                 <Link className="navbar-brand" to="/protected"><i className="fa fa-home"></i> protected</Link>
                             </li>
                             <LogInOrRegisterButton />

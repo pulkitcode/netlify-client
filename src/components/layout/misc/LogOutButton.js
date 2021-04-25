@@ -1,11 +1,6 @@
 import React, { useContext } from 'react'
 
-import {
-    Link
-} from "react-router-dom";
-
 import UserContext from "../../../context/userContext";
-
 
 export default function LogOutButton() {
 
@@ -25,7 +20,7 @@ export default function LogOutButton() {
             {userData.user ? <>
 
                 <li className="nav-item">
-                    <Link onClick={logout} className="btn btn-danger btn-success btn-round btn-block">Log Out</Link>
+                    <span onClick={logout} className="btn btn-danger btn-success btn-round btn-block">Log Out</span>
                 </li>
             </>
                 :
