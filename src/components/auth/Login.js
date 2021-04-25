@@ -12,10 +12,14 @@ export default function Login() {
 
     const { setUserData } = useContext(UserContext);
     const [error, setError] = useState("");
+    const [signInBtnClicked, SetsignIpBtnClicked] = useState(false);
+
     const { register, handleSubmit } = useForm();
 
     const onSubmit = async data => {
         try {
+
+            SetsignIpBtnClicked(true)
 
             const loginRes = await axios.post(`${BASE_URL}/login`, {
                 email: data.email,
@@ -33,6 +37,7 @@ export default function Login() {
         } catch (err) {
             err.response.data.msg && setError(err.response.data.msg);
             console.log(err)
+            SetsignIpBtnClicked(false)
         }
     };
 
@@ -73,7 +78,23 @@ export default function Login() {
                                 {/* End Password  */}
 
                                 {/* Submit Button */}
-                                <button type="submit" className="btn btn-block btn-wide btn-primary text-uppercase">Sign In</button>
+                                {/* <button type="submit" className="btn btn-block btn-wide btn-primary text-uppercase">Sign In</button> */}
+                                {/* End Submit Button  */}
+
+                                {/* Submit Button */}
+                                <button type="submit" className="btn btn-block btn-wide btn-primary text-uppercase"
+                                    disabled={signInBtnClicked}
+                                >
+                                    {signInBtnClicked ?
+                                        <>
+                                            Signing In Please Wait ...   <span className="spinner-border spinner-border-sm" role="status" aria-hidden="false"></span>
+                                        </>
+                                        :
+                                        <>
+                                            Sign In
+                                        </>}
+
+                                </button>
                                 {/* End Submit Button  */}
 
                                 {error &&
