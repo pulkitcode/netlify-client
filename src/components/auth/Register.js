@@ -65,7 +65,7 @@ export default function Register() {
 
         } catch (err) {
             err.response.data.msg && setError(err.response.data.msg);
-            console.log("EROOR FROM SERVER ===>>    ", err.response.data.msg)
+            //console.log("EROOR FROM SERVER ===>>    ", err.response.data.msg)
             SetsignUpBtnClicked(false)
         }
     };
