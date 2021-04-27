@@ -26,6 +26,8 @@ export default function Login() {
                 password: data.password
             });
 
+            console.log(loginRes.msg)
+
             setUserData({
                 token: loginRes.data.token,
                 user: loginRes.data.user,
@@ -34,9 +36,14 @@ export default function Login() {
             console.log(loginRes.data.token)
             localStorage.setItem("auth-token", loginRes.data.token);
             history.push("/protected");
+
         } catch (err) {
-            err.response.data.msg && setError(err.response.data.msg);
-            console.log(err)
+
+            console.log("entered the Error Block")
+
+            //err.response.data.msg && setError(err.response.data.msg);
+            setError(err.response.data.msg);
+            console.log(err.response.data.msg)
             SetsignIpBtnClicked(false)
         }
     };
